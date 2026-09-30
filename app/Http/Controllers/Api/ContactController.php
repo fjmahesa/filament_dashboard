@@ -46,7 +46,7 @@ class ContactController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Pesan berhasil dikirim!',
+            'message' => 'Terima kasih telah menghubungi kami. Kami akan segera merespons pesan Anda.',
             'data'    => $contact
         ], 201);
     }
