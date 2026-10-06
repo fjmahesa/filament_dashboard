@@ -16,15 +16,20 @@ class TelegramService
             return;
         }
 
+        // Buat URL direct link ke detail pesan di Filament Dashboard
+        // Sesuaikan nama resource/path di dashboard kamu jika berbeda (misal: contact-messages)
+        $detailUrl = "https://dashboard.inmarco.id/admin/contact-messages/{$inbox->id}";
+
         // Format Pesan dengan Markdown
         $message = "📩 *PESAN MASUK BARU!*\n\n"
             . "👤 *Nama:* {$inbox->name}\n"
             . "📧 *Email:* {$inbox->email}\n"
             . "📱 *Telepon:* " . ($inbox->phone ?? '-') . "\n"
-            . "📌 *Layanan:* " . ($inbox->service ?? 'Tanpa Layanan') . "\n\n"
+            . "📌 *Subjek:* " . ($inbox->subject ?? 'Tanpa Subjek') . "\n\n"
             . "💬 *Pesan:*\n"
             . "_{$inbox->message}_\n\n"
-            . "📅 *Waktu:* " . now()->format('d M Y, H:i') . " WIB";
+            . "📅 *Waktu:* " . now()->timezone('Asia/Jakarta')->format('d M Y, H:i') . " WIB\n\n"
+            . "🔗 [Lihat Detail Pesan di Dashboard]({$detailUrl})";
 
         try {
             Http::post("https://api.telegram.org/bot{$token}/sendMessage", [

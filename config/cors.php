@@ -13,7 +13,8 @@ return [
     'allowed_methods' => ['*'],
 
     // Daftarkan domain frontend kamu di sini, atau gunakan '*' untuk mengizinkan semua origin selama masa development
-    'allowed_origins' => ['*'], 
+    'allowed_origins' => ['https://inmarco.id',
+    'https://*.vercel.app', 'https://www.inmarco.id'], 
 
     'allowed_origins_patterns' => [],
 
